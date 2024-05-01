@@ -10,19 +10,20 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 
 @WebServlet(name = "CinemaHallServlet", value = {"/CinemaHalls", "/deleteCinemaHall", "/addCinemaHall", "/updateCinemaHall"})
 public class CinemaHallServlet extends HttpServlet {
     CinemaHallService cinemaHallService;
+
     public void init() {
-        this.cinemaHallService = new CinemaHallService(new DaoCinemaHall());    }
+        this.cinemaHallService = new CinemaHallService(new DaoCinemaHall());
+    }
 
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String path = request.getServletPath();
-        if(path.startsWith("/deleteCinemaHall")){
+        if (path.startsWith("/deleteCinemaHall")) {
             deleteCinemaHall(request, response);
 
         } else if (path.startsWith("/addCinemaHall")) {
@@ -30,7 +31,7 @@ public class CinemaHallServlet extends HttpServlet {
         } else if (path.equals("/CinemaHalls")) {
             getAllCinemaHalls(request, response);
 
-        } else if (path.startsWith("/updateCinemaHall") ){
+        } else if (path.startsWith("/updateCinemaHall")) {
             int id = Integer.parseInt(request.getParameter("hallId"));
             CinemaHall cinemaHall = cinemaHallService.getCinemaHall(id);
             request.setAttribute("cinemaHall", cinemaHall);
@@ -39,6 +40,7 @@ public class CinemaHallServlet extends HttpServlet {
         }
 
     }
+
     public void getAllCinemaHalls(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         ArrayList<CinemaHall> cinemaHalls = cinemaHallService.getAllCinemaHalls();
         request.setAttribute("cinemaHalls", cinemaHalls);
@@ -67,7 +69,7 @@ public class CinemaHallServlet extends HttpServlet {
     public void addCinemaHall(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String name = request.getParameter("hallName");
         int capacity = Integer.parseInt(request.getParameter("capacity"));
-        CinemaHall cinemaHall = new CinemaHall(null,name, capacity,false);
+        CinemaHall cinemaHall = new CinemaHall(null, name, capacity, false);
         cinemaHallService.createCinemaHall(cinemaHall);
         response.sendRedirect("CinemaHalls");
     }
@@ -82,11 +84,6 @@ public class CinemaHallServlet extends HttpServlet {
         cinemaHallService.modifyCinemaHall(cinemaHall);
         response.sendRedirect("CinemaHalls");
     }
-
-
-
-
-
 
 
     public void destroy() {

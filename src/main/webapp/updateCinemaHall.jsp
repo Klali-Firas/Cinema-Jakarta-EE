@@ -19,6 +19,7 @@
             height: 100vh;
             width: 100vw;
         }
+
         /* Add some styling to the form */
 
     </style>
@@ -35,25 +36,30 @@
                 <fieldset>
                     <input type="hidden" name="hallId" value="<%=cinemaHall.getHallId()%>">
                     <div class="form-floating mb-3">
-                        <input name="hallName" type="text" class="form-control" id="hallName"value="<%=cinemaHall.getHallName()%>">
+                        <input name="hallName" type="text" class="form-control" id="hallName"
+                               value="<%=cinemaHall.getHallName()%>">
                         <label for="hallName">Hall Name</label>
-                        <small id="HallNameHelper" class="form-text text-muted">You Hall name should inspire people !</small>
+                        <small id="HallNameHelper" class="form-text text-muted">You Hall name should inspire people
+                            !</small>
                     </div>
                 </fieldset>
                 <fieldset>
                     <div class="form-floating mb-3">
-                        <input name="capacity" type="number" class="form-control" id="capacity" value="<%=cinemaHall.getCapacity()%>">
+                        <input name="capacity" type="number" class="form-control" id="capacity"
+                               value="<%=cinemaHall.getCapacity()%>">
                         <label for="capacity">Capacity</label>
-                        <small id="capacityHelp" class="form-text text-muted">How many people can this hall hold ?</small>
+                        <small id="capacityHelp" class="form-text text-muted">How many people can this hall hold
+                            ?</small>
                     </div>
                 </fieldset>
                 <fieldset>
-                <div class="form-check mb-3">
-                    <input name="reservationStatus" class="form-check-input" type="checkbox" id="reservationStatus" <%=cinemaHall.isReservationStatus()? "checked":""%>>
-                    <label class="form-check-label" for="reservationStatus">
-                        Reservation Status
-                    </label>
-                </div>
+                    <div class="form-check mb-3">
+                        <input name="reservationStatus" class="form-check-input" type="checkbox"
+                               id="reservationStatus" <%=cinemaHall.isReservationStatus()? "checked":""%>>
+                        <label class="form-check-label" for="reservationStatus">
+                            Reservation Status
+                        </label>
+                    </div>
                 </fieldset>
                 <button type="submit" class="btn btn-success">Submit</button>
             </fieldset>

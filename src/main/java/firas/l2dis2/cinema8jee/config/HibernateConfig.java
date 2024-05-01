@@ -1,6 +1,9 @@
 package firas.l2dis2.cinema8jee.config;
 
 import firas.l2dis2.cinema8jee.Entity.CinemaHall;
+import firas.l2dis2.cinema8jee.Entity.Movie;
+import firas.l2dis2.cinema8jee.Entity.MovieCategory;
+import firas.l2dis2.cinema8jee.Entity.MovieSession;
 import org.hibernate.cfg.Configuration;
 
 public class HibernateConfig {
@@ -8,6 +11,9 @@ public class HibernateConfig {
         Configuration configuration = new Configuration();
         configuration.configure("hibernate.cfg.xml");
         configuration.addAnnotatedClass(CinemaHall.class);
+        configuration.addAnnotatedClass(Movie.class);
+        configuration.addAnnotatedClass(MovieSession.class);
+        configuration.addAnnotatedClass(MovieCategory.class);
 
 //        configuration.setProperty("hibernate.connection.url", "jdbc:postgresql://localhost:5432/cinema");
 //        configuration.setProperty("hibernate.connection.username", "postgres");
@@ -19,4 +25,6 @@ public class HibernateConfig {
         // Other Hibernate properties (e.g., dialect, show_sql, etc.)
         return configuration;
     }
+
+
 }

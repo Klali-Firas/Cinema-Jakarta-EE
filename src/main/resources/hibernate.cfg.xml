@@ -17,6 +17,9 @@
         <!-- Enable Hibernate's automatic session context management -->
         <property name="current_session_context_class">thread</property>
 
+        <!-- Disable the second-level cache  -->
+        <property name="hibernate.enable_lazy_load_no_trans">true</property>
+
         <!-- Echo all executed SQL to stdout -->
         <property name="show_sql">true</property>
 
@@ -25,5 +28,8 @@
 
         <!-- Names the annotated entity class -->
         <mapping class="firas.l2dis2.cinema8jee.Entity.CinemaHall"/>
+        <mapping class="firas.l2dis2.cinema8jee.Entity.Movie"/>
+        <mapping class="firas.l2dis2.cinema8jee.Entity.MovieSession"/>
+        <mapping class="firas.l2dis2.cinema8jee.Entity.MovieCategory"/>
     </session-factory>
 </hibernate-configuration>

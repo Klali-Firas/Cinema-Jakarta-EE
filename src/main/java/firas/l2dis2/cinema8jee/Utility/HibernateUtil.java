@@ -20,4 +20,9 @@ public class HibernateUtil {
     public static SessionFactory getSessionFactory() {
         return sessionFactory;
     }
+
+    public static void main(String[] args) {
+        System.out.println("HibernateUtil.main");
+        final SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+    }
 }

@@ -47,7 +47,7 @@
                 </td>
                 <td><%= cinemaHall.getCapacity() %>
                 </td>
-                <td><%=cinemaHall.isReservationStatus() ? "Reserved": "Not reserved"%>
+                <td><%=cinemaHall.isReservationStatus() ? "Reserved" : "Not reserved"%>
                 </td>
                 <td><a style="color: yellow" href="updateCinemaHall?hallId=<%= cinemaHall.getHallId() %>">
                     <i class="fa-solid fa-file-pen"></i></a></td>

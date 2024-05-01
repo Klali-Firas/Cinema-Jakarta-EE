@@ -10,13 +10,6 @@ import java.util.List;
 public class DaoCinemaHall {
     private final SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 
-    public static void main(String[] args) {
-        DaoCinemaHall daoCinemaHall = new DaoCinemaHall();
-        List<CinemaHall> halls = daoCinemaHall.getAllCinemaHalls();
-        for (CinemaHall hall : halls) {
-            System.out.println(hall.getHallName());
-        }
-    }
 
     public CinemaHall getCinemaHall(int hallId) {
         try (Session session = sessionFactory.openSession()) {
@@ -63,4 +56,12 @@ public class DaoCinemaHall {
             throw new RuntimeException(e);
         }
     }
+    //    public static void main(String[] args) {
+//        DaoCinemaHall daoCinemaHall = new DaoCinemaHall();
+//        List<CinemaHall> halls = daoCinemaHall.getAllCinemaHalls();
+//        for (CinemaHall hall : halls) {
+//            System.out.println(hall.getHallName());
+//        }
+//    }
+
 }
