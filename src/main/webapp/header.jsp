@@ -4,7 +4,7 @@
 
 <html>
 <head>
-    <title>Cinema Halls</title>
+    <title>Cinema</title>
     <link rel="stylesheet" href="assets/bootstrap-vapor.css">
     <link rel="stylesheet" href="assets/fontawesome/css/all.css">
     <script src="assets/bootstrap.bundle.js"></script>
@@ -37,21 +37,23 @@
 <body>
 <nav class="navbar navbar-expand-lg bg-dark w-100" data-bs-theme="dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">Navbar</a>
+        <a class="navbar-brand" href="#">Cinema</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarColor02">
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="CinemaHalls">Cinema Halls
+                    <a class="nav-link" href="CinemaHalls">Halls
                         <span class="visually-hidden">(current)</span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="Movies">Movies</a>
                 </li>
-
+                <li class="nav-item">
+                    <a class="nav-link" href="addMovieSession">Add Session</a>
+                </li>
             </ul>
 
         </div>

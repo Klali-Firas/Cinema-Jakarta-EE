@@ -4,8 +4,10 @@ package firas.l2dis2.cinema8jee.Controller;
 
 import firas.l2dis2.cinema8jee.Entity.Movie;
 import firas.l2dis2.cinema8jee.Entity.MovieCategory;
+import firas.l2dis2.cinema8jee.Entity.MovieSession;
 import firas.l2dis2.cinema8jee.Service.MovieCategoryService;
 import firas.l2dis2.cinema8jee.Service.MovieService;
+import firas.l2dis2.cinema8jee.Service.MovieSessionService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -22,10 +24,12 @@ import java.util.Date;
 public class MovieServlet extends HttpServlet {
     MovieService movieService;
     MovieCategoryService movieCategoryService;
+    MovieSessionService movieSessionService;
 
     public void init() {
         this.movieService = new MovieService();
         this.movieCategoryService = new MovieCategoryService();
+        this.movieSessionService = new MovieSessionService();
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -41,6 +45,8 @@ public class MovieServlet extends HttpServlet {
         } else if (path.startsWith("/movieDetails")) {
             String movieId = request.getParameter("movieId");
             Movie movie = movieService.getMovie(Integer.parseInt(movieId));
+            Collection<MovieSession> sessions = movieSessionService.getMovieSessionsByMovieId(movie.getMovieId());
+            request.setAttribute("sessions", sessions);
             request.setAttribute("movie", movie);
             request.getRequestDispatcher("/movieDetails.jsp").forward(request, response);
         } else if (path.startsWith("/editMovie")) {

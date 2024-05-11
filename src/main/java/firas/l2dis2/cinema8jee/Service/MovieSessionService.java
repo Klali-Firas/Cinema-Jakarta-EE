@@ -27,4 +27,8 @@ public class MovieSessionService {
     public Collection<MovieSession> getAllMovieSessions() {
         return daoMovieSession.getAllMovieSessions();
     }
+
+    public Collection<MovieSession> getMovieSessionsByMovieId(int movieId) {
+        return daoMovieSession.getMovieSessionsByMovieId(movieId);
+    }
 }

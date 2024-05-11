@@ -79,8 +79,8 @@ public class DaoMovie {
     }
     public List<Movie> findByMovieName(String movieName) {
         try (Session session = sessionFactory.openSession()) {
-            Query<Movie> query = session.createQuery("FROM Movie WHERE movieName = :movieName", Movie.class);
-            query.setParameter("movieName", movieName);
+            Query<Movie> query = session.createQuery("FROM Movie WHERE lower(movieName) like :movieName", Movie.class);
+            query.setParameter("movieName", '%'+movieName.toLowerCase()+'%');
             return query.getResultList();
         }
     }
@@ -95,8 +95,8 @@ public class DaoMovie {
 
     public List<Movie> findByMovieNameAndCategory(String movieName, MovieCategory category) {
         try (Session session = sessionFactory.openSession()) {
-            Query<Movie> query = session.createQuery("FROM Movie WHERE movieName = :movieName AND category = :category", Movie.class);
-            query.setParameter("movieName", movieName);
+            Query<Movie> query = session.createQuery("FROM Movie WHERE lower(movieName) like :movieName AND category = :category", Movie.class);
+            query.setParameter("movieName", '%'+movieName.toLowerCase()+'%');
             query.setParameter("category", category);
             return query.getResultList();
         }

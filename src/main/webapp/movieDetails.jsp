@@ -3,11 +3,12 @@
 <%@ page import="firas.l2dis2.cinema8jee.Entity.Movie" %>
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="firas.l2dis2.cinema8jee.Entity.MovieSession" %>
+<%@ page import="java.util.Collection" %>
 <%@include file="header.jsp" %>
 <div class="container">
     <div class="card w-75 border-success">
         <% Movie movie = (Movie) request.getAttribute("movie");
-            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            SimpleDateFormat sdf = new SimpleDateFormat("MMM d, yyyy");
             if (movie != null) { %>
         <div class="card-header d-flex justify-content-between align-items-center">
             <h1 class="d-inline-block">Movie</h1>
@@ -56,23 +57,37 @@
                     <h6>Category: <span class="fw-bold"><%= movie.getCategory().getLabel() %></span></h6>
                     <h6><%= "Release Date: " + sdf.format(movie.getReleaseDate()) %>
                     </h6>
-                    <%--                    <h6>Tags:</h6>--%>
+                   <div class="card border-info mt-4">
+                        <div class="card-header">
+                            <h5 class="card-title">Sessions</h5>
+                            <div class="card-body">
+                                <% ArrayList<MovieSession> sessions = new ArrayList<>((Collection)request.getAttribute("sessions"));
+                                    if (sessions != null && !sessions.isEmpty()) {
+                                        sdf = new SimpleDateFormat("MMM d, yyyy, HH:mm");%>
+                                <table class="table table-striped text-center">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">Hall</th>
+                                        <th scope="col">Date</th>
+                                        <th scope="col">Action</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <% for (MovieSession s : sessions) { %>
+                                    <tr>
+                                        <td><%= s.getHall().getHallName() %></td>
+                                        <td><%= sdf.format(s.getSessionDate()) %></td>
+                                        <td><a href="deleteMovieSession?movieSessionId=<%=s.getSessionId()%>&movieId=<%=movie.getMovieId()%>"><i class="fa-solid fa-trash"></i></a></td>
 
-                    <%--                    <div class="details-card p-2 mt-2">--%>
-                    <%--                        &lt;%&ndash; Assuming 'sessions' is an ArrayList<MovieSession> in 'movie' object &ndash;%&gt;--%>
-                    <%--                        <% for (MovieSession session : movie.getSessions()) { %>--%>
-                    <%--                        <h2><%= "session " + session.getSessionId() %></h2>--%>
-                    <%--                        <p><%= "Date Debut: " + sdf.format(session.getSessionDate()) %></p>--%>
-                    <%--                        &lt;%&ndash; You can access hall details using session.getHall() &ndash;%&gt;--%>
-                    <%--                        <p><%= "Hall: " + session.getHall().getHallName() %></p>--%>
-                    <%--                        &lt;%&ndash; Add more session details as needed &ndash;%&gt;--%>
-                    <%--                        <div class="w-100 text-end">--%>
-                    <%--                            &lt;%&ndash; Add your button here &ndash;%&gt;--%>
-                    <%--                            &lt;%&ndash; You can use onclick attribute to call a JavaScript function &ndash;%&gt;--%>
-                    <%--                            &lt;%&ndash; For example: onclick="toggleCandidatPopUp('<%= session.getSessionId() %>')" &ndash;%&gt;--%>
-                    <%--                        </div>--%>
-                    <%--                        <% } %>--%>
-                    <%--                    </div>--%>
+                                    </tr>
+                                    <% } %>
+                                </table>
+                                <% }%>
+                            <div class="w-100 text-end ">
+                            <a class="btn btn-outline-info" href="addMovieSession?movieId=<%= movie.getMovieId() %>">Add Session</a>
+                            </div>
+                            </div>
+                        </div>
                 </div>
             </div>
             <% } else { %>

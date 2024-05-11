@@ -17,12 +17,16 @@ public class DaoMovieSession {
         DaoMovieSession daoMovieSession = new DaoMovieSession();
         DaoMovie daoMovie = new DaoMovie();
         DaoCinemaHall daoCinemaHall = new DaoCinemaHall();
-        daoMovieSession.addMovieSession(new MovieSession(null, new Date(), daoMovie.getMovie(1), daoCinemaHall.getCinemaHall(11)));
-        daoMovieSession.addMovieSession(new MovieSession(null, new Date(), daoMovie.getMovie(2), daoCinemaHall.getCinemaHall(4)));
-        daoMovieSession.addMovieSession(new MovieSession(null, new Date(), daoMovie.getMovie(3), daoCinemaHall.getCinemaHall(3)));
-        ArrayList<MovieSession> ls = (ArrayList<MovieSession>) daoMovieSession.getAllMovieSessions();
+//        daoMovieSession.addMovieSession(new MovieSession(null, new Date(), daoMovie.getMovie(1), daoCinemaHall.getCinemaHall(11)));
+//        daoMovieSession.addMovieSession(new MovieSession(null, new Date(), daoMovie.getMovie(2), daoCinemaHall.getCinemaHall(4)));
+//        daoMovieSession.addMovieSession(new MovieSession(null, new Date(), daoMovie.getMovie(3), daoCinemaHall.getCinemaHall(3)));
+//        ArrayList<MovieSession> ls = (ArrayList<MovieSession>) daoMovieSession.getAllMovieSessions();
+//        for (MovieSession movieSession : ls) {
+//            System.out.println(movieSession.getSessionId() + " : " + movieSession.getMovie().getMovieName() + " : " + movieSession.getHall().getHallName());
+//        }
+        ArrayList<MovieSession> ls = (ArrayList<MovieSession>) daoMovieSession.getMovieSessionsByMovieId(3);
         for (MovieSession movieSession : ls) {
-            System.out.println(movieSession.getSessionId() + " : " + movieSession.getMovie().getMovieName() + " : " + movieSession.getHall().getHallName());
+            System.out.println(movieSession.getSessionId() + " : " + movieSession.getMovie().getMovieName() + " : " + movieSession.getHall().getHallName() + " : " + movieSession.getSessionDate());
         }
     }
 
@@ -71,5 +75,16 @@ public class DaoMovieSession {
             throw new RuntimeException(e);
         }
     }
+
+    public Collection<MovieSession> getMovieSessionsByMovieId(int movieId) {
+    try (Session session = sessionFactory.openSession()) {
+        return session.createQuery("from MovieSession where movie.id = :movieId", MovieSession.class)
+                      .setParameter("movieId", movieId)
+                      .list();
+    } catch (Exception e) {
+        throw new RuntimeException(e);
+    }
+}
+
 }
 
