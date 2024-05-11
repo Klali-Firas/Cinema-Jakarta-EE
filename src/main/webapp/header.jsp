@@ -49,6 +49,11 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="MovieCategories">Categories
+                        <span class="visually-hidden">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="Movies">Movies</a>
                 </li>
                 <li class="nav-item">
