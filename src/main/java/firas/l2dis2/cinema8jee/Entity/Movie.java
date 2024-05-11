@@ -13,6 +13,8 @@ public class Movie {
     private Integer movieId;
     @Column(name = "movie_name")
     private String movieName;
+    @Column(name = "cover")
+    private String cover;
     @Column(name = "release_date")
     @Temporal(TemporalType.DATE)
     private Date releaseDate;
@@ -23,11 +25,20 @@ public class Movie {
     public Movie() {
     }
 
-    public Movie(Integer movieId, String movieName, Date releaseDate, MovieCategory category) {
+    public Movie(Integer movieId, String movieName, String cover, Date releaseDate, MovieCategory category) {
         this.movieId = movieId;
         this.movieName = movieName;
+        this.cover = cover;
         this.releaseDate = releaseDate;
         this.category = category;
+    }
+
+    public String getCover() {
+        return cover;
+    }
+
+    public void setCover(String cover) {
+        this.cover = cover;
     }
 
     public Integer getMovieId() {

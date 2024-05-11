@@ -1,27 +1,14 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@include file="header.jsp"%>
 <%@ page import="firas.l2dis2.cinema8jee.Entity.CinemaHall" %>
 <%@ page import="java.util.List" %>
 
-<html>
-<head>
-    <title>Cinema Halls</title>
-    <link rel="stylesheet" href="assets/bootstrap-vapor.css">
-    <link rel="stylesheet" href="assets/fontawesome/css/all.css">
-    <style>
-        td a {
-            text-shadow: 0 0 1px rgba(255, 255, 255, 0.3), 0 0 2px rgba(255, 255, 255, 0.3), 0 0 5px rgba(255, 255, 255, 0.2);
 
-        }
-    </style>
-
-</head>
-<body>
-<div class="w-100 h-100 d-flex justify-content-center align-items-center">
+<div class="w-100 .page-height mt-5 d-flex justify-content-center align-items-center">
 
     <div class="card border-info mb-3 w-75">
         <div class="card-header d-flex justify-content-between align-items-center">
             <h1 class="d-inline-block">Cinema Halls</h1><a href="addCinemaHall"
-                                                           class="btn btn-info d-inline-block">Add Cinema Hall</a></div>
+                                                           class="btn btn-outline-info d-inline-block">Add Cinema Hall</a></div>
         <table class="text-center table table-hover table-bordered card-body">
             <thead class="table-info">
             <tr>
@@ -64,6 +51,4 @@
         </table>
     </div>
 </div>
-
-</body>
-</html>
+<%@include file="footer.jsp"%>

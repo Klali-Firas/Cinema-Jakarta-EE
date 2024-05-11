@@ -1,12 +1,15 @@
 package firas.l2dis2.cinema8jee.dao;
 
 import firas.l2dis2.cinema8jee.Entity.Movie;
+import firas.l2dis2.cinema8jee.Entity.MovieCategory;
 import firas.l2dis2.cinema8jee.Utility.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 
 import java.util.Collection;
 import java.util.LinkedList;
+import java.util.List;
 
 public class DaoMovie {
     private final SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
@@ -72,6 +75,30 @@ public class DaoMovie {
             return session.createQuery("from Movie", Movie.class).list();
         } catch (Exception e) {
             throw new RuntimeException(e);
+        }
+    }
+    public List<Movie> findByMovieName(String movieName) {
+        try (Session session = sessionFactory.openSession()) {
+            Query<Movie> query = session.createQuery("FROM Movie WHERE movieName = :movieName", Movie.class);
+            query.setParameter("movieName", movieName);
+            return query.getResultList();
+        }
+    }
+
+    public List<Movie> findByCategory(MovieCategory category) {
+        try (Session session = sessionFactory.openSession()) {
+            Query<Movie> query = session.createQuery("FROM Movie WHERE category = :category", Movie.class);
+            query.setParameter("category", category);
+            return query.getResultList();
+        }
+    }
+
+    public List<Movie> findByMovieNameAndCategory(String movieName, MovieCategory category) {
+        try (Session session = sessionFactory.openSession()) {
+            Query<Movie> query = session.createQuery("FROM Movie WHERE movieName = :movieName AND category = :category", Movie.class);
+            query.setParameter("movieName", movieName);
+            query.setParameter("category", category);
+            return query.getResultList();
         }
     }
 

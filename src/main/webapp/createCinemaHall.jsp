@@ -1,28 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Cinema Hall</title>
-    <link rel="stylesheet" href="assets/bootstrap-vapor.css">
-    <!-- Add Font Awesome CSS -->
-    <link rel="stylesheet" href="assets/fontawesome/css/all.css">
-    <style>
-        /* Center the form vertically */
-        .container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            width: 100vw;
-        }
-
-        /* Add some styling to the form */
-
-    </style>
-</head>
-<body>
+<%@include file="header.jsp"%>
 <div class="container">
     <div class="card w-50 border-success">
         <div class="card-header">
@@ -47,10 +23,9 @@
                             ?</small>
                     </div>
                 </fieldset>
-                <button type="submit" class="btn btn-success">Submit</button>
+                <button type="submit" class="btn btn-outline-success">Submit</button>
             </fieldset>
         </form>
     </div>
 </div>
-</body>
-</html>
+<%@include file="footer.jsp"%>

@@ -1,15 +1,6 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<!DOCTYPE html>
-<html>
-<head>
-    <title>JSP - Hello World</title>
-</head>
-<body>
-<h1><%= "Hello World!" %>
-</h1>
-<br/>
-<a href="CinemaHalls">CinemaHalls</a>
+<%@ include file="header.jsp" %>
 
-</body>
-
-</html>
+<div class="container">
+<a class="pt-5" href="CinemaHalls">CinemaHalls</a>
+</div>
+<%@include file="footer.jsp"%>

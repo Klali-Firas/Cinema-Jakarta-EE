@@ -56,6 +56,9 @@ public class DaoCinemaHall {
             throw new RuntimeException(e);
         }
     }
+
+
+
     //    public static void main(String[] args) {
 //        DaoCinemaHall daoCinemaHall = new DaoCinemaHall();
 //        List<CinemaHall> halls = daoCinemaHall.getAllCinemaHalls();
