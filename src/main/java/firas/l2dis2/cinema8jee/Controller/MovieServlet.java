@@ -13,6 +13,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -33,12 +34,17 @@ public class MovieServlet extends HttpServlet {
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        HttpSession session = request.getSession();
+        if (session.getAttribute("email") == null) {
+            response.sendRedirect("/");
+            return;
+        }
         String path = request.getServletPath();
 //        if (path.equals("/Movies")) {
 //            System.out.println("here");
 //            getAllMovies(request, response);
 //        }
-         if (path.startsWith("/addMovie")) {
+        if (path.startsWith("/addMovie")) {
             ArrayList<MovieCategory> categories = new ArrayList<MovieCategory>(movieCategoryService.getAllMovieCategories());
             request.setAttribute("categories", categories);
             request.getRequestDispatcher("/addMovie.jsp").forward(request, response);
@@ -60,8 +66,7 @@ public class MovieServlet extends HttpServlet {
             String movieId = request.getParameter("movieId");
             movieService.removeMovie(movieService.getMovie(Integer.parseInt(movieId)));
             response.sendRedirect("Movies");
-        }
-        else if (path.startsWith("/Movies")) {
+        } else if (path.startsWith("/Movies")) {
             getFilteredMovies(request, response);
         }
     }
@@ -78,7 +83,7 @@ public class MovieServlet extends HttpServlet {
             movies = movieService.getMoviesByCategoryAndName(movieCategoryService.getMovieCategory(Integer.parseInt(categoryId)), movieName);
         } else if (movieName != null && !movieName.isEmpty()) {
             movies = movieService.getMoviesByName(movieName);
-        } else if (categoryId != null ) {
+        } else if (categoryId != null) {
             movies = movieService.getMoviesByCategory(movieCategoryService.getMovieCategory(Integer.parseInt(categoryId)));
         } else {
             movies = movieService.getAllMovies();
@@ -96,6 +101,11 @@ public class MovieServlet extends HttpServlet {
 //    }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        HttpSession session = request.getSession();
+        if (session.getAttribute("email") == null) {
+            response.sendRedirect("/");
+            return;
+        }
         String path = request.getServletPath();
 
         if (path.equals("/addMovie")) {

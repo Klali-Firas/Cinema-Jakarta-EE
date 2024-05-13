@@ -43,6 +43,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarColor02">
             <ul class="navbar-nav me-auto">
+                <% if (session.getAttribute("email") != null) { %>
                 <li class="nav-item">
                     <a class="nav-link" href="CinemaHalls">Halls
                         <span class="visually-hidden">(current)</span>
@@ -59,7 +60,17 @@
                 <li class="nav-item">
                     <a class="nav-link" href="addMovieSession">Add Session</a>
                 </li>
+                <% } %>
             </ul>
+            <% if (session.getAttribute("email") != null) { %>
+            <ul class="navbar-nav me-ml">
+                <li class="nav-item">
+                    <a class="nav-link" href="logout">
+                       Log Out
+                    </a>
+                </li>
+            </ul>
+            <% } %>
 
         </div>
     </div>

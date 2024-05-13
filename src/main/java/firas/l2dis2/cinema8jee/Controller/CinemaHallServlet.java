@@ -8,6 +8,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -22,6 +23,11 @@ public class CinemaHallServlet extends HttpServlet {
 
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        HttpSession session = request.getSession();
+        if (session.getAttribute("email") == null) {
+            response.sendRedirect("/");
+            return;
+        }
         String path = request.getServletPath();
         if (path.startsWith("/deleteCinemaHall")) {
             deleteCinemaHall(request, response);
@@ -54,6 +60,11 @@ public class CinemaHallServlet extends HttpServlet {
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        HttpSession session = request.getSession();
+        if (session.getAttribute("email") == null) {
+            response.sendRedirect("/");
+            return;
+        }
         String path = request.getServletPath();
         switch (path) {
             case "/addCinemaHall":

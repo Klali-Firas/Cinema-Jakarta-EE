@@ -2,12 +2,6 @@
 
 package firas.l2dis2.cinema8jee.Controller;
 
-import java.io.*;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-
 import firas.l2dis2.cinema8jee.Entity.CinemaHall;
 import firas.l2dis2.cinema8jee.Entity.Movie;
 import firas.l2dis2.cinema8jee.Entity.MovieSession;
@@ -16,8 +10,17 @@ import firas.l2dis2.cinema8jee.Service.MovieService;
 import firas.l2dis2.cinema8jee.Service.MovieSessionService;
 import firas.l2dis2.cinema8jee.dao.DaoCinemaHall;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.http.*;
-import jakarta.servlet.annotation.*;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
+import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 
 @WebServlet(name = "MovieSessionController", value = {"/deleteMovieSession", "/addMovieSession"})
 public class MovieSessionController extends HttpServlet {
@@ -32,10 +35,15 @@ public class MovieSessionController extends HttpServlet {
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        HttpSession session = request.getSession();
+        if (session.getAttribute("email") == null) {
+            response.sendRedirect("/");
+            return;
+        }
         String path = request.getServletPath();
         if (path.startsWith("/addMovieSession")) {
             String movieId = request.getParameter("movieId");
-            if(movieId != null && !movieId.isEmpty()){
+            if (movieId != null && !movieId.isEmpty()) {
                 request.setAttribute("movieId", Integer.parseInt((movieId)));
 
             }
@@ -53,11 +61,15 @@ public class MovieSessionController extends HttpServlet {
             response.sendRedirect("movieDetails?movieId=" + movieId);
 
 
-
         }
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        HttpSession session = request.getSession();
+        if (session.getAttribute("email") == null) {
+            response.sendRedirect("/");
+            return;
+        }
         String path = request.getServletPath();
         if (path.startsWith("/addMovieSession")) {
             try {
